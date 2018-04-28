@@ -29,8 +29,9 @@ my class DIRHANDLE {
     }
     method left() {
         if $!index < nqp::elems(@!items) {
+            my int $index = nqp::elems(@!items);
             my $result := @!items.splice($!index);
-            $!index = nqp::elems(@!items);
+            $!index = $index;
             $result
         }
         else {
@@ -53,7 +54,7 @@ module P5opendir:ver<0.0.1>:auth<cpan:ELIZABETH> {
     }
 
     proto sub readdir(|) is export {*}
-    multi sub readdir(DIRHANDLE:D \handle, :$bare!) {
+    multi sub readdir(DIRHANDLE:D \handle, :$void!) {
         CALLERS::<$_> = handle.next
     }
     multi sub readdir(DIRHANDLE:D \handle, :$scalar!) { handle.next }
@@ -73,14 +74,44 @@ P5opendir - Implement Perl 5's opendir() and related built-ins
 
 =head1 SYNOPSIS
 
-  # exports opendir, readdir, telldir, seekdir, rewinddir, closedir
-  use P5opendir;
+    # exports opendir, readdir, telldir, seekdir, rewinddir, closedir
+    use P5opendir;
+
+    opendir(my $dh, $some_dir) || die "can't opendir $some_dir: $!";
+    my @dots = grep { .starts-with('.') && "$some_dir/$_".IO.f }, readdir($dh);
+    closedir $dh;
 
 =head1 DESCRIPTION
 
 This module tries to mimic the behaviour of the C<opendir>, C<readdir>,
 C<telldir>, C<seekdir>, C<rewinddir> and C<closedir> functions of Perl 5
 as closely as possible.
+
+=head1 PORTING CAVEATS
+
+The C<readdir> function has three modes:
+
+=head2 list mode
+
+By default, C<readdir> returns a list with all directory entries found.
+
+    my @entries = readdir($dh);
+
+=head2 scalar context
+
+In scalar context, C<readdir> returns one directory entry at a time.  Add the
+C<:scalar> named variable to mimic this behaviour:
+
+    while readdir($dh, :scalar) -> $entry {
+        say "found $entry";
+    }
+
+=head2 void context
+
+In void context, C<readdir> stores one directory entry at a time in C<$_>.
+Add the C<:void> named variable to mimic this behaviour:
+
+    .say while readdir($dh, :void);
 
 =head1 AUTHOR
 
