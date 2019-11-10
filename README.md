@@ -1,9 +1,7 @@
-[![Build Status](https://travis-ci.org/lizmat/P5opendir.svg?branch=master)](https://travis-ci.org/lizmat/P5opendir)
-
 NAME
 ====
 
-P5opendir - Implement Perl 5's opendir() and related built-ins
+P5opendir - Implement Perl's opendir() and related built-ins
 
 SYNOPSIS
 ========
@@ -18,7 +16,7 @@ SYNOPSIS
 DESCRIPTION
 ===========
 
-This module tries to mimic the behaviour of the `opendir`, `readdir`, `telldir`, `seekdir`, `rewinddir` and `closedir` functions of Perl 5 as closely as possible.
+This module tries to mimic the behaviour of the `opendir`, `readdir`, `telldir`, `seekdir`, `rewinddir` and `closedir` functions of Perl as closely as possible.
 
 ORIGINAL PERL 5 DOCUMENTATION
 =============================
@@ -122,7 +120,7 @@ COPYRIGHT AND LICENSE
 
 Copyright 2018-2019 Elizabeth Mattijsen
 
-Re-imagined from Perl 5 as part of the CPAN Butterfly Plan.
+Re-imagined from Perl as part of the CPAN Butterfly Plan.
 
 This library is free software; you can redistribute it and/or modify it under the Artistic License 2.0.
 

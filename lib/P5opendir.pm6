@@ -47,7 +47,7 @@ my class DIRHANDLE {
     method Str(--> Str:D) { $!path }
 }
 
-module P5opendir:ver<0.0.4>:auth<cpan:ELIZABETH> {
+module P5opendir:ver<0.0.5>:auth<cpan:ELIZABETH> {
 
     sub opendir(\handle, Str() $path) is export {
         my $success = True;
@@ -83,7 +83,7 @@ module P5opendir:ver<0.0.4>:auth<cpan:ELIZABETH> {
 
 =head1 NAME
 
-P5opendir - Implement Perl 5's opendir() and related built-ins
+P5opendir - Implement Perl's opendir() and related built-ins
 
 =head1 SYNOPSIS
 
@@ -97,7 +97,7 @@ P5opendir - Implement Perl 5's opendir() and related built-ins
 =head1 DESCRIPTION
 
 This module tries to mimic the behaviour of the C<opendir>, C<readdir>,
-C<telldir>, C<seekdir>, C<rewinddir> and C<closedir> functions of Perl 5
+C<telldir>, C<seekdir>, C<rewinddir> and C<closedir> functions of Perl
 as closely as possible.
 
 =head1 ORIGINAL PERL 5 DOCUMENTATION
@@ -198,7 +198,7 @@ Pull Requests are welcome.
 
 Copyright 2018-2019 Elizabeth Mattijsen
 
-Re-imagined from Perl 5 as part of the CPAN Butterfly Plan.
+Re-imagined from Perl as part of the CPAN Butterfly Plan.
 
 This library is free software; you can redistribute it and/or modify it under the Artistic License 2.0.
 

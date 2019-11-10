@@ -2,6 +2,9 @@ Revision history for P5opendir
 
 {{$NEXT}}
 
+0.0.5  2019-11-10T13:16:05+01:00
+    - changed Perl 5 to Perl
+
 0.0.4  2019-03-17T14:41:44+01:00
     - Deprecate :scalar in favour of Scalar as first positional
     - Deprecate :void in favour of Mu as first positional
