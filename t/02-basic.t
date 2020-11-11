@@ -1,4 +1,4 @@
-use v6.c;
+use v6.*;
 use Test;
 use P5opendir;
 %*ENV<RAKUDO_NO_DEPRECATIONS> = True;
@@ -37,4 +37,4 @@ is @entries.sort, $expected, 'did we get all entries';
 is telldir($handle), 4, 'did the telldir work';
 ok closedir($handle), 'did the closedir work';
 
-# vim: ft=perl6 expandtab sw=4
+# vim: expandtab shiftwidth=4

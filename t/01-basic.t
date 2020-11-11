@@ -1,4 +1,4 @@
-use v6.c;
+use v6.*;
 use Test;
 use P5opendir;
 
@@ -17,4 +17,4 @@ ok !defined(P5opendir::<&rewinddir>), '&rewinddir externally NOT accessible?';
 ok defined(::('&closedir')),          '&closedir imported?';
 ok !defined(P5opendir::<&closedir>),  '&closedir externally NOT accessible?';
 
-# vim: ft=perl6 expandtab sw=4
+# vim: expandtab shiftwidth=4

@@ -1,4 +1,4 @@
-use v6.c;
+use v6.d;
 
 my class DIRHANDLE {
     has str $.path;
@@ -47,7 +47,7 @@ my class DIRHANDLE {
     method Str(--> Str:D) { $!path }
 }
 
-module P5opendir:ver<0.0.5>:auth<cpan:ELIZABETH> {
+module P5opendir:ver<0.0.6>:auth<cpan:ELIZABETH> {
 
     sub opendir(\handle, Str() $path) is export {
         my $success = True;
@@ -83,7 +83,7 @@ module P5opendir:ver<0.0.5>:auth<cpan:ELIZABETH> {
 
 =head1 NAME
 
-P5opendir - Implement Perl's opendir() and related built-ins
+Raku port of Perl's opendir() and related built-ins
 
 =head1 SYNOPSIS
 
@@ -96,9 +96,9 @@ P5opendir - Implement Perl's opendir() and related built-ins
 
 =head1 DESCRIPTION
 
-This module tries to mimic the behaviour of the C<opendir>, C<readdir>,
-C<telldir>, C<seekdir>, C<rewinddir> and C<closedir> functions of Perl
-as closely as possible.
+This module tries to mimic the behaviour of Perl's C<opendir>, C<readdir>,
+C<telldir>, C<seekdir>, C<rewinddir> and C<closedir> built-ins as
+closely as possible in the Raku Programming Language.
 
 =head1 ORIGINAL PERL 5 DOCUMENTATION
 
@@ -187,6 +187,23 @@ Add C<Mu> as the first positional variable to mimic this behaviour:
 
     .say while readdir(Mu, $dh, :void);
 
+=head2 $_ no longer accessible from caller's scope
+
+In future language versions of Raku, it will become impossible to access the
+C<$_> variable of the caller's scope, because it will not have been marked as
+a dynamic variable.  So please consider changing:
+
+    readdir;
+
+to either:
+
+    readdir($_);
+
+or, using the subroutine as a method syntax, with the prefix C<.> shortcut
+to use that scope's C<$_> as the invocant:
+
+    .&readdir;
+
 =head1 AUTHOR
 
 Elizabeth Mattijsen <liz@wenzperl.nl>
@@ -196,10 +213,12 @@ Pull Requests are welcome.
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright 2018-2019 Elizabeth Mattijsen
+Copyright 2018-2020 Elizabeth Mattijsen
 
 Re-imagined from Perl as part of the CPAN Butterfly Plan.
 
 This library is free software; you can redistribute it and/or modify it under the Artistic License 2.0.
 
 =end pod
+
+# vim: expandtab shiftwidth=4

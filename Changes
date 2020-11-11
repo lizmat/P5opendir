@@ -2,6 +2,12 @@ Revision history for P5opendir
 
 {{$NEXT}}
 
+0.0.6  2020-11-11T21:34:42+01:00
+    - Change name of distribution
+    - Force to highest possible Raku version
+    - Update copyright year
+    - Add PORTING CAVEATS section about access caller's $_
+
 0.0.5  2019-11-10T13:16:05+01:00
     - changed Perl 5 to Perl
 

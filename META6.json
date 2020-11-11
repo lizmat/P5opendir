@@ -1,23 +1,27 @@
 {
-  "auth" : "cpan:ELIZABETH",
-  "authors" : [
+  "auth": "cpan:ELIZABETH",
+  "authors": [
     "Elizabeth Mattijsen"
   ],
-  "build-depends" : [ ],
-  "depends" : [ ],
-  "description" : "Implement Perl's opendir() and related built-ins",
-  "license" : "Artistic-2.0",
-  "name" : "P5opendir",
-  "perl" : "6.c",
-  "provides" : {
-    "P5opendir" : "lib/P5opendir.pm6"
+  "build-depends": [
+  ],
+  "depends": [
+  ],
+  "description": "Raku port of Perl's opendir() and related built-ins",
+  "license": "Artistic-2.0",
+  "name": "P5opendir",
+  "perl": "6.c",
+  "provides": {
+    "P5opendir": "lib/P5opendir.pm6"
   },
-  "resources" : [ ],
-  "source-url" : "https://github.com/lizmat/P5opendir.git",
-  "tags" : [
+  "resources": [
+  ],
+  "source-url": "https://github.com/lizmat/P5opendir.git",
+  "tags": [
     "PERL5",
     "CPAN5"
   ],
-  "test-depends" : [ ],
-  "version" : "0.0.5"
+  "test-depends": [
+  ],
+  "version": "0.0.6"
 }

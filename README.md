@@ -1,7 +1,7 @@
 NAME
 ====
 
-P5opendir - Implement Perl's opendir() and related built-ins
+Raku port of Perl's opendir() and related built-ins
 
 SYNOPSIS
 ========
@@ -16,7 +16,7 @@ SYNOPSIS
 DESCRIPTION
 ===========
 
-This module tries to mimic the behaviour of the `opendir`, `readdir`, `telldir`, `seekdir`, `rewinddir` and `closedir` functions of Perl as closely as possible.
+This module tries to mimic the behaviour of Perl's `opendir`, `readdir`, `telldir`, `seekdir`, `rewinddir` and `closedir` built-ins as closely as possible in the Raku Programming Language.
 
 ORIGINAL PERL 5 DOCUMENTATION
 =============================
@@ -108,6 +108,21 @@ In void context, `readdir` stores one directory entry at a time in `$_`. Add `Mu
 
     .say while readdir(Mu, $dh, :void);
 
+$_ no longer accessible from caller's scope
+-------------------------------------------
+
+In future language versions of Raku, it will become impossible to access the `$_` variable of the caller's scope, because it will not have been marked as a dynamic variable. So please consider changing:
+
+    readdir;
+
+to either:
+
+    readdir($_);
+
+or, using the subroutine as a method syntax, with the prefix `.` shortcut to use that scope's `$_` as the invocant:
+
+    .&readdir;
+
 AUTHOR
 ======
 
@@ -118,7 +133,7 @@ Source can be located at: https://github.com/lizmat/P5opendir . Comments and Pul
 COPYRIGHT AND LICENSE
 =====================
 
-Copyright 2018-2019 Elizabeth Mattijsen
+Copyright 2018-2020 Elizabeth Mattijsen
 
 Re-imagined from Perl as part of the CPAN Butterfly Plan.
 
