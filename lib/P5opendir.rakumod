@@ -47,7 +47,7 @@ my class DIRHANDLE {
     method Str(--> Str:D) { $!path }
 }
 
-module P5opendir:ver<0.0.6>:auth<cpan:ELIZABETH> {
+module P5opendir:ver<0.0.7>:auth<zef:lizmat> {
 
     sub opendir(\handle, Str() $path) is export {
         my $success = True;
@@ -206,14 +206,14 @@ to use that scope's C<$_> as the invocant:
 
 =head1 AUTHOR
 
-Elizabeth Mattijsen <liz@wenzperl.nl>
+Elizabeth Mattijsen <liz@raku.rocks>
 
 Source can be located at: https://github.com/lizmat/P5opendir . Comments and
 Pull Requests are welcome.
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright 2018-2020 Elizabeth Mattijsen
+Copyright 2018, 2019, 2020, 2021 Elizabeth Mattijsen
 
 Re-imagined from Perl as part of the CPAN Butterfly Plan.
 
