@@ -10,7 +10,7 @@
   "description": "Raku port of Perl's opendir() and related built-ins",
   "license": "Artistic-2.0",
   "name": "P5opendir",
-  "perl": "6.c",
+  "perl": "6.d",
   "provides": {
     "P5opendir": "lib/P5opendir.rakumod"
   },
@@ -23,5 +23,5 @@
   ],
   "test-depends": [
   ],
-  "version": "0.0.7"
+  "version": "0.0.8"
 }

@@ -47,37 +47,34 @@ my class DIRHANDLE {
     method Str(--> Str:D) { $!path }
 }
 
-module P5opendir:ver<0.0.7>:auth<zef:lizmat> {
-
-    sub opendir(\handle, Str() $path) is export {
-        my $success = True;
-        CATCH { default { $success = False } }
-        handle = DIRHANDLE.new($path);
-        $success
-    }
-
-    proto sub readdir(|) is export {*}
-    multi sub readdir(Mu:U, DIRHANDLE:D \handle) {
-        CALLERS::<$_> = handle.next
-    }
-    multi sub readdir(DIRHANDLE:D \handle, :$void!)
-      is DEPRECATED('Mu as first positional')
-    {
-        CALLERS::<$_> = handle.next
-    }
-    multi sub readdir(Scalar:U, DIRHANDLE:D \handle) { handle.next }
-    multi sub readdir(DIRHANDLE:D \handle, :$scalar!)
-      is DEPRECATED('Scalar as first positional')
-    {
-        handle.next
-    }
-    multi sub readdir(DIRHANDLE:D \handle) { handle.left }
-
-    sub telldir(DIRHANDLE:D \handle) is export { handle.index }
-    sub rewinddir(DIRHANDLE:D \handle) is export { handle.set(0) }
-    sub seekdir(DIRHANDLE:D \handle, Int() $pos) is export { handle.set($pos) }
-    sub closedir(DIRHANDLE:D \handle) is export { True }
+sub opendir(\handle, Str() $path) is export {
+    my $success = True;
+    CATCH { default { $success = False } }
+    handle = DIRHANDLE.new($path);
+    $success
 }
+
+proto sub readdir(|) is export {*}
+multi sub readdir(Mu:U, DIRHANDLE:D \handle) {
+    CALLER::LEXICAL::<$_> = handle.next
+}
+multi sub readdir(DIRHANDLE:D \handle, :$void!)
+  is DEPRECATED('Mu as first positional')
+{
+    CALLER::LEXICAL::<$_> = handle.next
+}
+multi sub readdir(Scalar:U, DIRHANDLE:D \handle) { handle.next }
+multi sub readdir(DIRHANDLE:D \handle, :$scalar!)
+  is DEPRECATED('Scalar as first positional')
+{
+    handle.next
+}
+multi sub readdir(DIRHANDLE:D \handle) { handle.left }
+
+sub telldir(DIRHANDLE:D \handle) is export { handle.index }
+sub rewinddir(DIRHANDLE:D \handle) is export { handle.set(0) }
+sub seekdir(DIRHANDLE:D \handle, Int() $pos) is export { handle.set($pos) }
+sub closedir(DIRHANDLE:D \handle) is export { True }
 
 =begin pod
 
@@ -208,12 +205,16 @@ to use that scope's C<$_> as the invocant:
 
 Elizabeth Mattijsen <liz@raku.rocks>
 
+If you like this module, or what I’m doing more generally, committing to a
+L<small sponsorship|https://github.com/sponsors/lizmat/>  would mean a great
+deal to me!
+
 Source can be located at: https://github.com/lizmat/P5opendir . Comments and
 Pull Requests are welcome.
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright 2018, 2019, 2020, 2021 Elizabeth Mattijsen
+Copyright 2018, 2019, 2020, 2021, 2023 Elizabeth Mattijsen
 
 Re-imagined from Perl as part of the CPAN Butterfly Plan.
 

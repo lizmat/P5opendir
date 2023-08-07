@@ -17,7 +17,7 @@ my @files;
 @files.push(readdir($handle, :scalar)) for ^2;
 is readdir($handle, :scalar), Nil, 'end reached';
 
-my $expected = '. .. 01-basic.t 02-basic.t';
+my $expected = '. .. 01-basic.rakutest 02-basic.rakutest';
 is @files.sort, $expected, 'did we get all entries';
 
 ok rewinddir($handle), 'did the rewinddir work';
