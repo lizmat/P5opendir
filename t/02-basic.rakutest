@@ -2,10 +2,14 @@ use Test;
 use P5opendir;
 %*ENV<RAKUDO_NO_DEPRECATIONS> = True;
 
-plan 15;
+plan 14;
 
 my $dir = $?FILE.IO.parent.absolute;
-ok opendir(my $handle, $dir), "did we return ok for opening '$dir'?";
+unless opendir(my $handle, $dir) {
+    bail-out "Could not open our own directory: $dir ($!)";
+    exit;
+}
+
 ok $handle, 'did we get an instantiated object?';
 is $handle.^name, 'DIRHANDLE', 'did we get a DIRHANDLE';
 is telldir($handle), 0, 'did the telldir work';
@@ -36,6 +40,4 @@ is @entries.sort, $expected, 'did we get all entries';
 is telldir($handle), 4, 'did the telldir work';
 ok closedir($handle), 'did the closedir work';
 
-
-die;
 # vim: expandtab shiftwidth=4
