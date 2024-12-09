@@ -18,6 +18,7 @@ my class DIRHANDLE {
         );
         nqp::closedir($handle);
 
+dd @items;
         # Different versions of NQP either produce "." and "..", or they
         # do not.  Perl's opendir() assumes they will be, so put them
         # there if they're not there yet.
@@ -25,9 +26,9 @@ my class DIRHANDLE {
             nqp::unshift_s(@items,"..");
             nqp::unshift_s(@items,".");
         }
+dd @items;
 
         @!items := @items;
-        $!index  = 0;
         self
     }
     method new(\path) { DIRHANDLE.CREATE.SET-SELF(path) }
