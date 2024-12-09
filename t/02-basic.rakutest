@@ -4,7 +4,7 @@ use P5opendir;
 
 plan 15;
 
-my $dir = $?FILE.IO.parent.IO.absolute;
+my $dir = $?FILE.IO.parent.absolute;
 ok opendir(my $handle, $dir), "did we return ok for opening '$dir'?";
 ok $handle, 'did we get an instantiated object?';
 is $handle.^name, 'DIRHANDLE', 'did we get a DIRHANDLE';
