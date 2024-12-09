@@ -1,6 +1,10 @@
 Revision history for P5opendir
 
 {{$NEXT}}
+    - Adapt to 2024.12 changes in nqp::opendir()
+    - Add sponsor button
+    - Add separate CI badge for each OS
+    - Update copyright year
 
 0.0.8  2023-08-07T18:45:25+02:00
     - Update test file extension

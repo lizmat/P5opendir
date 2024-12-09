@@ -1,5 +1,3 @@
-use v6.d;
-
 my class DIRHANDLE {
     has str $.path;
     has str @.items;
@@ -13,12 +11,23 @@ my class DIRHANDLE {
     # immediately and fake that functionality (as a first approximation).
     method SET-SELF($!path) {
         my $handle := nqp::opendir($!path); # throws if it didn't work
+        my str @items;
         nqp::while(
           nqp::chars(my str $next = nqp::nextfiledir($handle)),
-          nqp::push_s(@!items,$next)
+          nqp::push_s(@items,$next)
         );
         nqp::closedir($handle);
-        $!index = 0;
+
+        # Different versions of NQP either produce ".." and ".", or they
+        # do not.  Perl's opendir() assumes they will be, so put them
+        # there if they're not there yet.
+        if nqp::atpos_s(@items,0) ne ".." {
+            nqp::unshift_s(@items,".");
+            nqp::unshift_s(@items,"..");
+        }
+
+        @!items := @items;
+        $!index  = 0;
         self
     }
     method new(\path) { DIRHANDLE.CREATE.SET-SELF(path) }
@@ -214,7 +223,7 @@ Pull Requests are welcome.
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright 2018, 2019, 2020, 2021, 2023 Elizabeth Mattijsen
+Copyright 2018, 2019, 2020, 2021, 2023, 2024 Elizabeth Mattijsen
 
 Re-imagined from Perl as part of the CPAN Butterfly Plan.
 

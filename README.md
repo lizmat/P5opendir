@@ -1,4 +1,4 @@
-[![Actions Status](https://github.com/lizmat/P5opendir/workflows/test/badge.svg)](https://github.com/lizmat/P5opendir/actions)
+[![Actions Status](https://github.com/lizmat/P5opendir/actions/workflows/linux.yml/badge.svg)](https://github.com/lizmat/P5opendir/actions) [![Actions Status](https://github.com/lizmat/P5opendir/actions/workflows/macos.yml/badge.svg)](https://github.com/lizmat/P5opendir/actions) [![Actions Status](https://github.com/lizmat/P5opendir/actions/workflows/windows.yml/badge.svg)](https://github.com/lizmat/P5opendir/actions)
 
 NAME
 ====
@@ -137,7 +137,7 @@ Source can be located at: https://github.com/lizmat/P5opendir . Comments and Pul
 COPYRIGHT AND LICENSE
 =====================
 
-Copyright 2018, 2019, 2020, 2021, 2023 Elizabeth Mattijsen
+Copyright 2018, 2019, 2020, 2021, 2023, 2024 Elizabeth Mattijsen
 
 Re-imagined from Perl as part of the CPAN Butterfly Plan.
 
