@@ -36,4 +36,6 @@ is @entries.sort, $expected, 'did we get all entries';
 is telldir($handle), 4, 'did the telldir work';
 ok closedir($handle), 'did the closedir work';
 
+
+die;
 # vim: expandtab shiftwidth=4
