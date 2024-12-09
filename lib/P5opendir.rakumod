@@ -18,15 +18,24 @@ my class DIRHANDLE {
         );
         nqp::closedir($handle);
 
-dd @items;
         # Different versions of NQP either produce "." and "..", or they
         # do not.  Perl's opendir() assumes they will be, so put them
         # there if they're not there yet.
-        unless nqp::atpos_s(@items,0) eq "." | ".." {
+        if nqp::atpos_s(@items,0) eq "." | ".." {
+            # no action, we're good
+        }
+
+        # Some OSes now put "." and ".." at the end ???
+        elsif nqp::atpos_s(@items,nqp::elems(@items) - 1) eq "." | ".." {
+            nqp::unshift_s(@items,nqp::pop(@items));  # ".."
+            nqp::unshift_s(@items,nqp::pop(@items));  # "."
+        }
+
+        # Should start with ".", ".." for consistency
+        else {
             nqp::unshift_s(@items,"..");
             nqp::unshift_s(@items,".");
         }
-dd @items;
 
         @!items := @items;
         self
