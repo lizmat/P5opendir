@@ -21,9 +21,9 @@ my class DIRHANDLE {
         # Different versions of NQP either produce ".." and ".", or they
         # do not.  Perl's opendir() assumes they will be, so put them
         # there if they're not there yet.
-        if nqp::atpos_s(@items,0) ne ".." {
-            nqp::unshift_s(@items,".");
+        unless nqp::atpos_s(@items,0) eq "." {
             nqp::unshift_s(@items,"..");
+            nqp::unshift_s(@items,".");
         }
 
         @!items := @items;
