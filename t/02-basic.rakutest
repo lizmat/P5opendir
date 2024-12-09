@@ -6,7 +6,7 @@ plan 14;
 
 my $dir = $?FILE.IO.parent.absolute;
 unless opendir(my $handle, $dir) {
-    bail-out "Could not open our own directory: $dir ($!)";
+    skip-rest "Could not open our own directory: $dir ($!)";
     exit;
 }
 
